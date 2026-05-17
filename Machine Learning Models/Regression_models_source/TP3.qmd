@@ -1,0 +1,252 @@
+---
+title: 'Compte rendu' 
+author: 'Ouarezki Oussama Abde Rahim G3' 
+pandoc-options: ["--wrap=preserve"]
+format:
+    pdf:
+        number-sections: true
+        colorlinks: true
+---
+## Introduction{#hidden-toc .unnumbered}
+
+In this report, we will explore the application of linear regression models to analyze and predict real-world outcomes. First, we will use simple linear regression to examine how years of professional experience impact employee salaries. Then, we will apply multiple linear regression to analyze how various factors, such as R&D spending, administration costs, marketing expenses, and location, affect the profit of startups. The goal of this report is to demonstrate how these regression models can provide valuable insights and aid in decision-making.
+
+# Simple linear regression
+::: {.callout-note icon=false}
+## Question 1
+Lisez l'ensemble de données $Salary Data.csv$ et affichez les premières lignes pour mieux comprendre sa structure.
+:::
+We imported the library $pandas$ it's necessary for exploring and manging dataframes, and we used that function $pd.read_csv('')$ to store the csv file in variable called $data$, we explored the data using the methode $head()$ which show the first 5 rows of the dataframe.
+```{python,echo=true}
+import pandas as pd
+import numpy as np
+
+data=pd.read_csv("Salary_Data.csv")
+data.head()
+
+```
+
+::: {.callout-note icon=false}
+## Question 2
+Séparez les variables explicatives (X) et la variable à prédire (y).  
+:::
+it's pretty straight forward we splitted the data into two parts:  
+
+- **indepadant variable** which is $X$  
+- **depadant variable** which is the $Y$ in this case  
+```{python,echo=true}
+X=data[['YearsExperience']]
+Y=data['Salary']
+
+```
+
+::: {.callout-note icon=false}
+## Question 3
+Divisez le dataset en Training set et Test set avec la fonction $train test split$ :  
+- L'ensemble de test doit représenter (33%) du dataset total.  
+- Utilisez random_state = 0 pour garantir des résultats reproductibles.  
+
+:::
+To use $train_test_split()$ we need to import the library $sklearn$
+```{python,echo=true}
+from sklearn.model_selection import train_test_split
+
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.33,random_state=0)
+
+```
+
+::: {.callout-note icon=false}
+## Question 4
+Construire le modèle de régression linéaire :  
+- Importez la classe LinearRegression de la bibliothèque sklearn.  
+- Entraînez le modèle sur l'ensemble d'entraînement.  
+
+:::
+We began by importing the LinearRegression model from scikit-learn and storing it in a variable called $model$. Next, we used the $fit()$ method to train the model on our data by providing the training dataset as input. 
+```{python,echo=true}
+from sklearn.linear_model import LinearRegression
+model=LinearRegression()
+
+model.fit(X_train,Y_train)
+
+```
+::: {.callout-note icon=false}
+## Question 5
+Utilisez le modèle que vous avez créé pour faire des prédictions sur l'ensemble de test. Affichez ensuite les valeurs prédites pour les comparer aux valeurs salariales réelles.
+
+:::
+
+```{python,echo=true}
+
+Y_pred=model.predict(X_test)
+
+comp = pd.DataFrame({'real values': Y_test, 
+'predictedvalues': Y_pred,'residu': abs(Y_test-Y_pred)})
+
+comp
+```
+
+As we can see that the diffrence between the real values and predicted values are relatively  little bit small, so we can conclude that our model is good enough.
+
+::: {.callout-note icon=false}
+## Question 6
+Estimez le salaire d'une personne ayant 15 ans d'expérience.  
+:::
+To estimate salary of someone who had 15 years of exprecience  we first have to create 2D numpy arrays because the model need 2D array to work, then we use the methode $model.predict()$ and put the Values we want to predict as input to this method, and then we just display it.
+```{python,echo=true}
+salary15=np.array([[15]])
+estimated_salary15=model.predict(salary15)
+
+print('Estimated salary for someone who had 15 years of expreciene is: ',estimated_salary15)
+
+```
+
+::: {.callout-note icon=false}
+## Question 7
+Créez un graphique scatter pour visualiser la relation entre l'expérience et le salaire :  
+- En rouge, les points de l'ensemble de test.  
+- En vert, les points de l'ensemble d'entraînement.  
+- Tracez la droite de régression correspondant à vos prédictions.  
+
+:::
+To plot our data and our line of regression we just need to import the library $matplotlib$ and use it:  
+- for the training set we use for X:$X\_train$ and for $Y$:$Y\_train$   
+- for the testing set we use for $X$:$X\_test$ and for $Y$:$Y\_test$   
+- and for the line of regression $X$:$X\_train$ and for $Y$ the predicted values of $X\_train$.  
+
+And you are maybe asking why we used the training data to plot the regression line why we didn't use the testing data the answer is because we train the model with those data so those data are the ones who made the model create that line of regression
+```{python,echo=true}
+import matplotlib.pyplot as plt
+
+plt.scatter(X_train,Y_train,color='red',label='Training set')
+plt.scatter(X_test,Y_test,color='green',label='testing set')
+plt.plot(X_train,model.predict(X_train),color='blue',label='line of regression')
+plt.legend()
+plt.show()
+```
+
+\newpage
+
+# multiple linear regression
+
+::: {.callout-note icon=false}
+## Question 1
+Chargez l'ensemble de données Startups.csv, définissez X et y et encodez les variables catégoriques avec OneHotEncoder(drop='first') pour éviter la colinéarité.
+
+:::
+As we can see that our dataframe have 5 columns 'R&D Spend', 'Administration', 'Marketing Spend', 'State', 'Profit' and the target variable is $Profit$.
+```{python,echo=true}
+df=pd.read_csv('Startups.csv')
+df.head()
+
+
+```
+
+To encode our data with $OneHotencoder$ we have first to import the library $sklearn$, and this case we will use $OneHotEncoder$ with $drop='first'$ to prevent  multicollinearity in regression models.
+ **Original Categories**
+We have three categories:
+- California
+- Florida
+- New York
+
+ **One-Hot Encoding Without Dropping**
+If we encode the categories without dropping any, the resulting table is:
+
+| Category     | California | Florida | New York |
+|--------------|:----------:|:-------:|:--------:|
+| California   |     1      |    0    |    0     |
+| Florida      |     0      |    1    |    0     |
+| New York     |     0      |    0    |    1     |
+| Florida      |     0      |    1    |    0     |
+| California   |     1      |    0    |    0     |
+
+
+
+ **One-Hot Encoding With drop**
+When applying `drop='first'`, the first category (*California*) is dropped. The resulting table is:
+
+| Category     | Florida | New York |
+|--------------|:-------:|:--------:|
+| California   |    0    |    0     |
+| Florida      |    1    |    0     |
+| New York     |    0    |    1     |
+| Florida      |    1    |    0     |
+| California   |    0    |    0     |
+
+so when both are equal to zero $->$ that indicates that is California
+```{python,echo=true}
+X=df[['R&D Spend','Administration','Marketing Spend','State']]
+Y=df['Profit']
+
+from sklearn.preprocessing import OneHotEncoder
+
+onehotencoder = OneHotEncoder(sparse_output=False,drop='first')
+encoded = onehotencoder.fit_transform(df[['State']])
+encoded = pd.DataFrame(encoded, columns=onehotencoder.get_feature_names_out(['State'])) 
+
+X_encoded = pd.concat([X.drop(columns=['State']), encoded], axis=1)
+
+```
+
+The $sparse_output=False$ parameter in $OneHotEncoder$ ensures the output is a **dense NumPy array*- instead of a memory-efficient sparse matrix.  
+then we fit_transform our data and then name the columns  and then drop the intial column $State$ and replaced by the new two Columns $State_Florida$ and $State_New_York$.
+
+::: {.callout-note icon=false}
+## Question 2
+Divisez le dataset en Training set et Test set puis utilisez LinearRegression pour entraîner le modèle sur X_train, y_train.
+
+:::
+It's the same as we did before
+```{python,echo=true}
+X_train, X_test, Y_train, Y_test = train_test_split(X_encoded, Y, test_size=0.33, random_state=7)
+
+
+model2 = LinearRegression()
+model2.fit(X_train, Y_train)
+```
+
+::: {.callout-note icon=false}
+## Question 3
+Estimez le profit d'une startup ayant des dépenses de 130000 en R&D, de 140000 en administration et de 300000 en marketing, ainsi qu'une localisation à New York.
+
+:::
+
+```{python,echo=true}
+X_encoded.columns
+```
+
+as we can see the order here is:  
+1. R&D Spend  
+2. Administration  
+3. Marketing SpendProfit  
+4. State_Florida  
+5. State_New York'  
+
+so our vector have to respect this order.
+
+```{python,echo=true}
+new_startup = [[130000, 140000, 300000, 0, 1]]  
+
+predicted_profit = model2.predict(new_startup)
+
+
+print(f"Estimated Profit: {predicted_profit[0]:.2f}")
+```
+
+## Conclusion {#hidden-toc .unnumbered}
+
+In this session, we explored how linear regression can be used to analyze data and make predictions in practical scenarios:
+
+### 1. Simple Linear Regression {#hidden-toc .unnumbered} 
+We studied how an employee's experience influences their salary. Using a simple regression model, we identified a clear relationship and made predictions, like estimating the salary for someone with 15 years of experience. This showed us how straightforward models can provide valuable insights into real-world data.
+
+### 2. Multiple Linear Regression{#hidden-toc .unnumbered}  
+We expanded our understanding by analyzing how different factors, such as R&D, administration, marketing spending, and location, impact the profit of startups. By encoding categorical variables and training a regression model, we could predict the profit of a startup based on its spending and location, making the model highly applicable for business decision-making.
+
+### Key Takeaways:{#hidden-toc .unnumbered}
+- Prepare and split data effectively for model training and testing.
+- Handle categorical variables for better model performance.
+- Use regression models to understand and predict outcomes.
+- Visualize data and model results to make them easier to interpret.
+
+Overall, we saw how linear regression, both simple and multiple, can be powerful tools for analyzing data and making informed predictions in various fields.
