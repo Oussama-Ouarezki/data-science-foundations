@@ -2,6 +2,8 @@
 
 A collection of practical reports and implementations covering core data science and machine learning topics — from classical ML models to probability simulations in R.
 
+> 📌 **All reports are organized by topic. Click any title to open the PDF.**
+
 ---
 
 ## 📁 Repository Structure
@@ -15,7 +17,29 @@ data-science-foundations/
 
 ---
 
+## 🧠 Bayesian Classification
+
+### 📄 [Bayesian Classifier Report](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Classification%20bayesian/Rapport7.pdf)
+
+> 🎬 **[Watch the video explanation](https://youtu.be/ZLY2h3qgQ_A)**
+
+An in-depth report on **Bayesian classification**, including the mathematical foundations and practical implementation.
+
+---
+
 ## 🤖 Machine Learning Models
+
+### 📄 [Linear Regression — Salary & Startup Profit](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Machine%20Learning%20Models/Regression_models.pdf)
+
+Covers **simple and multiple linear regression** — predicting employee salary from experience, and startup profit from R&D, marketing, and location spending.
+
+**Topics covered:**
+- Simple linear regression with scatter plot visualization
+- One-hot encoding of categorical variables to handle location
+- Multiple linear regression with `OneHotEncoder(drop='first')`
+- Predicting salary for 15 years of experience and profit for a new startup
+
+---
 
 ### 📄 [SVM Classification — Social Network Ads](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Machine%20Learning%20Models/Classification_models.pdf)
 
@@ -41,6 +65,18 @@ Predicts Titanic passenger survival using a **Decision Tree classifier**, with h
 
 ---
 
+### 📄 [Polynomial Regression — Salary Prediction](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Machine%20Learning%20Models/Polynomial_regression.pdf)
+
+Compares **linear vs. polynomial regression** (degree 4) for predicting salary from years of experience, using R² as the evaluation metric.
+
+**Topics covered:**
+- Visualizing non-linear relationships
+- Applying `PolynomialFeatures` transformation
+- Plotting and comparing regression curves
+- Predicting salary for a new data point
+
+---
+
 ### 📄 [DNA Sequence Alignment — Dynamic Programming](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Machine%20Learning%20Models/Matching%20DNA%20Sequences%20Step%20by%20Step%20Using%20Python.pdf)
 
 Aligns two DNA sequences (`GCGTATGC` and `GCTATAC`) using the **edit distance algorithm** (dynamic programming).
@@ -53,41 +89,7 @@ Aligns two DNA sequences (`GCGTATGC` and `GCTATAC`) using the **edit distance al
 
 ---
 
-### 📄 [Polynomial Regression — Salary Prediction](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Machine%20Learning%20Models/Polynomial_regression.pdf)
-
-Compares **linear vs. polynomial regression** (degree 4) for predicting salary from years of experience, using R² as the evaluation metric.
-
-**Topics covered:**
-- Visualizing non-linear relationships
-- Applying `PolynomialFeatures` transformation
-- Plotting regression curves and comparing model fit
-- Predicting salary for a new data point
-
----
-
-## 🧠 Bayesian Classification
-
-### 📄 [Bayesian Classifier Report](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Classification%20bayesian/Rapport7.pdf)
-
-> 🎬 **[Watch the video explanation](https://youtu.be/ZLY2h3qgQ_A)**
-
-An in-depth report on **Bayesian classification**, including the mathematical foundations and practical implementation.
-
----
-
 ## 📈 Probability Distributions with R
-
-### 📄 [Linear Regression — Salary & Startup Profit](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Probabilty%20Distribution%20with%20R/nalyse%20des%20donn%C3%A9es%20des%20peintres%20et%20applications%20probabilistes%20en%20R.pdf)
-
-Covers **simple and multiple linear regression** in R — predicting employee salary from experience, and startup profit from R&D, marketing, and location spending.
-
-**Topics covered:**
-- Simple linear regression with visualization
-- One-hot encoding of categorical variables
-- Multiple linear regression with `OneHotEncoder(drop='first')`
-- Predicting outcomes for new inputs
-
----
 
 ### 📄 [Probability Simulation — Geometric Distribution via Rejection Sampling](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Probabilty%20Distribution%20with%20R/Simulation%20de%20lois%20de%20probabilit%C3%A9%20par%20g%C3%A9n%C3%A9rateur%20congruent%20lin%C3%A9aire%20et%20m%C3%A9thode%20de%20rejet%20sous%20R.pdf)
 
@@ -115,7 +117,7 @@ Simulates a **Cauchy distribution** by first generating Normal samples via the *
 
 ### 📄 [Painters Dataset — Probability Applications in R](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Probabilty%20Distribution%20with%20R/nalyse%20des%20donn%C3%A9es%20des%20peintres%20et%20applications%20probabilistes%20en%20R.pdf)
 
-Explores the `painters` dataset from the MASS library, combining descriptive statistics with hands-on probability calculations and custom law implementation.
+Explores the `painters` dataset from the MASS library, combining descriptive statistics with hands-on probability calculations and a custom distribution implementation.
 
 **Topics covered:**
 - Histograms for each painter criterion (Composition, Drawing, Colour, Expression)
@@ -137,6 +139,6 @@ Explores the `painters` dataset from the MASS library, combining descriptive sta
 
 ## 👤 Author
 
-**Ouarezki Oussama Abde Rahim** — G3  
+**Ouarezki Abde Rahim Oussama** — G3  
 University of Algiers 1, Faculty of Sciences  
 Academic Year 2024–2025
