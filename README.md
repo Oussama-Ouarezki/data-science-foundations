@@ -16,6 +16,7 @@ Une collection de rapports pratiques et d'implémentations couvrant les thèmes 
 data-science-foundations/
 ├── Classification bayesian/
 ├── Machine Learning Models/
+├── Regression Models Comparison/
 └── Probabilty Distribution with R/
 ```
 
@@ -93,6 +94,28 @@ Aligne deux séquences ADN (`GCGTATGC` et `GCTATAC`) via l'**algorithme de dista
 
 ---
 
+### 🚗 Comparaison de Modèles de Régression
+
+#### 📄 [Prédiction du Prix des Voitures — Régression Linéaire, Ridge, Lasso & Polynomiale](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Regression%20Models%20Comparison/)
+
+Implémente et compare plusieurs techniques de régression pour **prédire le prix des voitures** à partir d'un dataset réel.
+
+**Thèmes abordés :**
+- Régression linéaire (baseline), polynomiale (degrés multiples), Ridge (L2) et Lasso (L1)
+- Solutions analytiques et optimisation par gradient
+- Prétraitement : suppression de colonnes, encodage cible, mise à l'échelle Min-Max et Standard
+- Évaluation : MSE, R² et validation croisée pour les hyperparamètres
+- Résultat : les modèles régularisés surpassent les polynômes de haut degré en généralisation
+
+```
+Regression Models Comparison/
+├── src/        ← implémentation Python principale
+├── notebooks/  ← analyse exploratoire
+└── data/       ← dataset
+```
+
+---
+
 ### 📈 Distributions de Probabilités avec R
 
 #### 📄 [Simulation — Loi Géométrique par Méthode de Rejet](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Probabilty%20Distribution%20with%20R/Simulation%20de%20lois%20de%20probabilit%C3%A9%20par%20g%C3%A9n%C3%A9rateur%20congruent%20lin%C3%A9aire%20et%20m%C3%A9thode%20de%20rejet%20sous%20R.pdf)
@@ -143,7 +166,7 @@ Explore le jeu de données `painters` de la bibliothèque MASS, en combinant sta
 
 ### 👤 Auteur
 
-**Ouarezki Abde Rahim Oussama** 
+**Ouarezki Abde Rahim Oussama**
 
 ---
 ---
@@ -162,6 +185,7 @@ A collection of practical reports and implementations covering core data science
 data-science-foundations/
 ├── Classification bayesian/
 ├── Machine Learning Models/
+├── Regression Models Comparison/
 └── Probabilty Distribution with R/
 ```
 
@@ -239,6 +263,28 @@ Aligns two DNA sequences (`GCGTATGC` and `GCTATAC`) using the **edit distance al
 
 ---
 
+### 🚗 Regression Models Comparison
+
+#### 📄 [Car Price Prediction — Linear, Polynomial, Ridge & Lasso Regression](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Regression%20Models%20Comparison/)
+
+Implements and compares several regression techniques to **predict car prices** using a real-world dataset, studying model performance, complexity, and generalization.
+
+**Topics covered:**
+- Linear regression (baseline), polynomial regression (multiple degrees), Ridge (L2), and Lasso (L1)
+- Both analytical solutions and gradient-based optimization
+- Data processing: removing irrelevant columns, target encoding, Min-Max and Standard scaling
+- Evaluation with MSE, R², and cross-validation for regularization parameters
+- Key finding: regularized models generalize better than high-degree polynomials under limited data
+
+```
+Regression Models Comparison/
+├── src/        ← main Python implementation
+├── notebooks/  ← exploratory analysis
+└── data/       ← dataset
+```
+
+---
+
 ### 📈 Probability Distributions with R
 
 #### 📄 [Probability Simulation — Geometric Distribution via Rejection Sampling](https://github.com/Oussama-Ouarezki/data-science-foundations/blob/main/Probabilty%20Distribution%20with%20R/Simulation%20de%20lois%20de%20probabilit%C3%A9%20par%20g%C3%A9n%C3%A9rateur%20congruent%20lin%C3%A9aire%20et%20m%C3%A9thode%20de%20rejet%20sous%20R.pdf)
@@ -286,4 +332,3 @@ Explores the `painters` dataset from the MASS library, combining descriptive sta
 | R | `MASS`, base stats (`dnorm`, `dpois`, `rgeom`, `acf`) |
 
 ---
-
